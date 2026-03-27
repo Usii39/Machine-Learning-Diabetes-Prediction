@@ -5,4 +5,4 @@
 
 近年來，機器學習（Machine Learning） 方法被廣泛應用於醫療預測問題，例如疾病診斷、風險評估與健康管理。透過分析大量的健康資料，機器學習模型能夠學習不同健康指標與疾病之間的關聯，進而建立具有預測能力的分類模型。
 
-在眾多機器學習方法中，XGBoost（eXtreme Gradient Boosting） 是一種基於 Gradient Boosting Decision Tree 的集成學習演算法。由於其具有高效能、良好的泛化能力以及可處理非線性關係等特性，因此在許多分類與預測問題中表現優異。次要採用另外9種機器學習方法作為對照組，包含Linear Discriminant Analysis (LDA)、Quadratic Discriminant Analysis (QDA)、Classification Tree、Random Forests、Neural Networks、Support Vector Machine (SVM)、Gradient Boosting (GBM)
+在眾多機器學習方法中，XGBoost（eXtreme Gradient Boosting） 是一種基於 Gradient Boosting Decision Tree 的集成學習演算法。由於其具有高效能、良好的泛化能力以及可處理非線性關係等特性，因此在許多分類與預測問題中表現優異。次要採用另外7種機器學習方法作為對照組，包含Linear Discriminant Analysis (LDA)、Quadratic Discriminant Analysis (QDA)、Classification Tree、Random Forests、Neural Networks、Support Vector Machine (SVM)、Gradient Boosting (GBM)
