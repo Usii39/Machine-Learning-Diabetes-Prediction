@@ -1,8 +1,26 @@
-# Machine-Learning-Diabetes-Prediction
-本專案報告使用了多達8種機器學習方法，來預測病人的糖尿病狀況  
-簡介：
-糖尿病（Diabetes）是全球常見的慢性疾病之一，若未能及早診斷與治療，可能導致心血管疾病、腎臟病與視網膜病變等多種嚴重併發症。因此，如何利用醫療與健康資料建立有效的預測模型，以辨識潛在的高風險族群，已成為醫療資料分析中的重要研究議題。
+# 🩸 糖尿病風險預測與機器學習模型優化 (Diabetes Risk Prediction)
 
-近年來，機器學習（Machine Learning） 方法被廣泛應用於醫療預測問題，例如疾病診斷、風險評估與健康管理。透過分析大量的健康資料，機器學習模型能夠學習不同健康指標與疾病之間的關聯，進而建立具有預測能力的分類模型。
+![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3+-orange.svg)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15+-FF6F00.svg)
 
-在眾多機器學習方法中，XGBoost（eXtreme Gradient Boosting） 是一種基於 Gradient Boosting Decision Tree 的集成學習演算法。由於其具有高效能、良好的泛化能力以及可處理非線性關係等特性，因此在許多分類與預測問題中表現優異。次要採用另外7種機器學習方法作為對照組，包含Linear Discriminant Analysis (LDA)、Quadratic Discriminant Analysis (QDA)、Classification Tree、Random Forests、Neural Networks、Support Vector Machine (SVM)、Gradient Boosting (GBM)
+## 📌 專案簡介 (Project Overview)
+本專案旨在利用機器學習演算法，針對包含高度不平衡特徵的醫療數據進行「糖尿病風險預測」。
+有別於一般僅呼叫 API 的初階模型實作，本專案深入演算法底層，解決了**資料不平衡 (Imbalanced Data)**、**跨框架交叉驗證 (Cross-Validation Wrapper)** 以及**決策邊界尋優 (Threshold Tuning)** 等實務痛點，旨在建立具備高泛化能力與高解釋性的醫療預測模型。
+
+## 💡 核心技術亮點 (Key Methodologies)
+- **非對稱成本敏感學習 (Cost-Sensitive Learning)**：針對醫療場域「漏判糖尿病」的高昂代價，全面導入 `class_weight` (1:5) 機制，強迫模型關注少數類別。
+- **動態特徵篩選 (Feature Selection)**：利用隨機森林的 Gini Importance，精準萃取出前 16 項核心特徵（保留 >90% 資訊量），有效降低維度災難並加速後續矩陣運算。
+- **高階模型封裝 (Custom Estimator Wrappers)**：透過繼承 `BaseEstimator`，將神經網路 (Keras) 與自訂的決策邊界邏輯封裝為標準 scikit-learn API，完美對接 `GridSearchCV` 進行自動化超參數尋優，杜絕權重洩漏 (Weight Leakage)。
+- **事後尋優法 (Post-Training Threshold Tuning)**：揚棄傳統 0.5 的預設機率切分，在獨立驗證集上透過陣列運算光速掃描 80 種 Threshold，極大化 Macro F1 分數。
+
+## 🛠️ 實作模型與成效 (Models & Performance)
+本專案統一採用 **Macro F1 Score** 作為核心評估指標，以公允衡量模型在少數類別上的表現。
+
+| 機器學習演算法 | 核心優化策略 | 測試集 Macro F1 |
+| :--- | :--- | :---: |
+| **Decision Tree** | Cost-Complexity Pruning (CCP), 均勻抽樣 Alpha 剪枝 | `0.6167` |
+| **Random Forest** | Gini 特徵篩選 (Top 16), 雙層 Grid Search (`mtry` & `threshold`) | `0.6636` |
+| **Neural Network (MLP)** | Standardization, Dropout, 自訂 Macro F1 評估器, 早停機制 (Early Stopping) | `0.6804` |
+| **Support Vector Machine** | RBF Kernel, Platt Scaling 機率校正, 超參數尋優 | ` 0.6298` |
+| **XGBoost** | *(即將更新)* | `-` |
