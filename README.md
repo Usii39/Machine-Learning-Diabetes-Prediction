@@ -17,7 +17,8 @@
 - **事後尋優法 (Post-Training Threshold Tuning)**：揚棄傳統 0.5 的預設機率切分，在獨立驗證集上透過陣列運算光速掃描 80 種 Threshold，極大化 Macro F1 分數。
 
 <img width="1383" height="983" alt="image" src="https://github.com/user-attachments/assets/61477e35-71c8-43bd-89d6-f5e706e99ec4" />
-<img width="1102" height="982" alt="image" src="https://github.com/user-attachments/assets/99c7be21-5f97-4c0f-aa77-59e5433a28a8" />
+<img width="668" height="583" alt="image" src="https://github.com/user-attachments/assets/1223c1b5-524c-4f74-96b3-8fa72c974fb0" />
+
 
 
 ## 🛠️ 實作模型與成效 (Models & Performance)
